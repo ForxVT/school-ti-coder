@@ -52,7 +52,7 @@
           if (this.categories.length < 8) {
             this.$parent.course.push({ id: this.categories.length + 1 });
             this.categories.push({ id: this.categories.length + 1, title: "Chapitre" });
-            console.log(this.$refs);
+            console.log(this.$refs.category0);
           }
         } else if (this.categories.length < 7) {
           if (this.$parent.course[this.$parent.course.length - 1]["categories"] == null) {

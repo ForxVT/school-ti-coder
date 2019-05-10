@@ -5,7 +5,7 @@
         <button id="main-menu-header-add" class="app-header-button" style="float: right;" v-on:click="onClickAdd()">Ajouter</button>
       </template>
       <template v-slot:default>
-        <span id="main-menu-main-header" class="app-menu-category-header">Chapitres</span>
+        <span id="main-menu-main-header" class="app-menu-category-header">Programme</span>
         <div id="main-menu-main-categories">
           <base-category v-for="(category, index) in $parent.course" :key="index"/>
         </div>

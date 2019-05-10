@@ -1,6 +1,6 @@
 <template>
   <div class="base-view">
-    <img id="base-view-background" src="@/assets/images/ti83.png"/>
+    <img id="base-view-background" src="@/assets/images/ti83.svg"/>
     <div id="base-view-content">
         <div id="base-view-header">
             <div id="base-view-header-border"></div>

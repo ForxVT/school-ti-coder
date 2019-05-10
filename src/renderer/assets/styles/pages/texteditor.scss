@@ -1,0 +1,33 @@
+#text-editor-content {
+  margin-top: -14px;
+  width: 640px;
+  height: 420px;
+  position: absolute;
+  background-color: #E6E2E6;
+  color: white;
+}
+
+#text-editor-editor {
+  margin-left: 54px;
+  margin-top: 32px;
+  width: 530px;
+  height: 330px;
+  position: absolute;
+  background-color: white;
+}
+
+#text-editor-area {
+  color: #0000FF;
+  font-size: 23px;
+  height: 100%;
+  width: 100%;
+  font-weight: 700;
+ -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+  border: none;
+  word-spacing: 3px;
+  overflow:hidden;
+  outline: none;
+}

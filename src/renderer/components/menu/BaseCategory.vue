@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import utils from "@/lib/utils.js";
+
   export default {
     name: "base-category",
     data: function () {
@@ -35,9 +37,11 @@
       onClickGoTo: function () {
         if (this.$parent.$parent.$parent.state === 0) {
           this.$parent.$parent.$parent.state = 1;
+          utils.setCookie("state", this.$parent.$parent.$parent.state.toString());
           this.$router.push({ path: `/sub-menu/${this.id}` });
         } else {
           this.$parent.$parent.$parent.state = 2;
+          utils.setCookie("state", this.$parent.$parent.$parent.state.toString());
           this.$router.push({ path: `/text-editor/${this.$parent.$parent.$route.params.chapter}/${this.id}` });
         }
       },

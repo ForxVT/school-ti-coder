@@ -52,7 +52,7 @@ table {
   border-spacing: 0;
 }
 
-h1, h2, h3, h4, h5, h6, a, p, span, li, button, input {
+h1, h2, h3, h4, h5, h6, a, p, span, li, button, input, textarea {
   font-family: "TI-83 Premium CE",-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
   font-smoothing: never;
   -webkit-font-smoothing : none;
@@ -76,6 +76,7 @@ body {
   margin-right: 4px;
   color: white;
   font-size: 24px;
+  outline: none;
 }
 
 .app-header-button:hover {
@@ -124,6 +125,7 @@ body {
   margin-right: 4px;
   color: black;
   font-size: 24px;
+  outline: none;
 }
 
 .app-menu-category-button:hover {

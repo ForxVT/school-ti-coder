@@ -1,14 +1,29 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-export default new Router({
+export default new VueRouter({
   routes: [
     {
-      path: '/',
-      name: 'index',
-      component: require('@/components/Index').default,
+      path: "/",
+      name: "index",
+      redirect: "/main-menu",
+    },
+    {
+      path: "/main-menu",
+      name: "main-menu",
+      component: require("@/pages/MainMenu.vue").default,
+    },
+    {
+      path: "/sub-menu/:chapter",
+      name: "sub-menu",
+      component: require("@/pages/SubMenu.vue").default,
+    },
+    {
+      path: "/text-editor/:chapter/:category",
+      name: "text-editor",
+      component: require("@/pages/TextEditor.vue").default,
     },
     {
       path: '*',

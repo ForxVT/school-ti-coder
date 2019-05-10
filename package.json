@@ -1,5 +1,5 @@
 {
-  "name": "ticoder",
+  "name": "ti-coder",
   "version": "0.0.1",
   "author": "Hugo Kindel <kindelhugo@gmail.com>",
   "main": "./dist/electron/main.js",

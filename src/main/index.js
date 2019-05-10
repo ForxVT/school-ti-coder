@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron' // eslint-disable-line
+import { app, BrowserWindow, Menu, MenuItem } from 'electron' // eslint-disable-line
 
 /**
  * Set `__static` path to static files in production
@@ -14,19 +14,56 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`;
 
 function createWindow() {
-  /**
-   * Initial window options
-   */
   mainWindow = new BrowserWindow({
     width: 880,
-    height: 702,
+    height: 722,
     minWidth: 880,
-    minHeight: 702,
+    minHeight: 722,
     useContentSize: true,
     //resizable: false,
   });
 
-  mainWindow.setMenu(null);
+  const fileMenu = new Menu();
+
+  fileMenu.append(new MenuItem({
+    label: "Nouveau",
+  }));
+  fileMenu.append(new MenuItem({
+    type: "separator",
+  }));
+  fileMenu.append(new MenuItem({
+    label: "Ouvrir...",
+  }));
+  fileMenu.append(new MenuItem({
+    type: "separator",
+  }));
+  fileMenu.append(new MenuItem({
+    label: "Sauvegarder",
+  }));
+  fileMenu.append(new MenuItem({
+    label: "Sauvegarder sous...",
+  }));
+  fileMenu.append(new MenuItem({
+    type: "separator",
+  }));
+  fileMenu.append(new MenuItem({
+    label: "Exporter...",
+  }));
+  fileMenu.append(new MenuItem({
+    type: "separator",
+  }));
+  fileMenu.append(new MenuItem({
+    label: "Quitter",
+  }));
+
+  const menu = new Menu();
+
+  menu.append(new MenuItem({ 
+    label: "Fichier",
+    submenu: fileMenu,
+  }));
+
+  mainWindow.setMenu(menu);
   mainWindow.loadURL(winURL);
 
   mainWindow.on('closed', () => {

@@ -6,10 +6,16 @@
 
 <script>
   export default {
-    name: 'ticoder',
+    name: 'ti-coder',
+    data: function () {
+      return {
+        state: 0,
+        course: [],
+      };
+    },
   };
 </script>
 
 <style lang="scss">
-  @import "~@/styles/app.scss";
+  @import "@/assets/styles/app.scss";
 </style>

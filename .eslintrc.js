@@ -35,6 +35,7 @@ module.exports = {
     'quote-props': 0,
     'dot-notation': 0,
     'no-unused-expressions': 0,
+    'max-len': 1,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

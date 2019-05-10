@@ -1,0 +1,47 @@
+#base-view-background {
+  z-index: 0;
+  position: absolute;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#base-view-content {
+  width: 640px;
+  height: 480px;
+  position:absolute;
+  margin-left: 120px;
+  margin-top: 156px;
+  background-color: white;
+  color: white;
+}
+
+#base-view-header {
+  height: 60px;
+  background-color: #525552;
+}
+
+#base-view-header-border {
+  height: 2px;
+  background-color: black;
+}
+
+#base-view-header-content {
+  height: 58px;
+  padding-top: 12px;
+  padding-left: 4px;
+}
+
+#base-view-main {
+  width: 640px;
+  height: 420px;
+}
+
+#base-view-main-content {
+  width: 640;
+  height: 406px;
+  padding-top: 14px;
+  overflow: auto;
+}

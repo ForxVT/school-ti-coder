@@ -25,18 +25,14 @@
       BaseView,
       BaseCategory,
     },
-    data: function () {
-      return {
-        currentCategory: 0,
-      };
-    },
     methods: {
       onClickAdd: function () {
-        if (this.$parent.course.length < 8) {
-          this.$parent.course.push({ id: this.$parent.course.length + 1, title: "Chapitre", categories: [] });
-          utils.setCookie("course", JSON.stringify(this.$parent.course));
-        }
+        this.$parent.course.push({ id: this.$parent.course.length + 1, title: "Chapitre", categories: [] });
+        utils.setCookie("course", JSON.stringify(this.$parent.course));
       },
+    },
+    created: function () {
+      this.$parent.currentCategory = 0;
     },
   };
 </script>

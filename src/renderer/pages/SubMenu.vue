@@ -33,11 +33,6 @@
       BaseView,
       BaseCategory,
     },
-    data: function () {
-      return {
-        currentCategory: 0,
-      };
-    },
     methods: {
       onClickBack: function () {
         this.$parent.state = 0;
@@ -45,11 +40,12 @@
         this.$router.push({ path: "/main-menu/" });
       },
       onClickAdd: function () {
-        if (this.$parent.course[this.$route.params.chapter - 1].categories.length < 7) {
-          this.$parent.course[this.$route.params.chapter - 1].categories.push({ id: this.$parent.course[this.$route.params.chapter - 1].categories.length + 1, title: "Catégorie", content: "" });
-          utils.setCookie("course", JSON.stringify(this.$parent.course));
-        }
+        this.$parent.course[this.$route.params.chapter - 1].categories.push({ id: this.$parent.course[this.$route.params.chapter - 1].categories.length + 1, title: "Catégorie", content: "" });
+        utils.setCookie("course", JSON.stringify(this.$parent.course));
       },
+    },
+    created: function () {
+      this.$parent.currentCategory = 0;
     },
   };
 </script>

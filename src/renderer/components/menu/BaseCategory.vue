@@ -21,14 +21,14 @@
     },
     mounted: function () {
       if (this.$parent.$parent.$parent.state === 0) {
-        const category = this.$parent.$parent.$parent.course[this.$parent.$parent.currentCategory];
-        this.$parent.$parent.currentCategory += 1;
+        const category = this.$parent.$parent.$parent.course[this.$parent.$parent.$parent.currentCategory];
+        this.$parent.$parent.$parent.currentCategory += 1;
 
         this.id = category["id"];
         this.title = category["title"];
       } else {
-        const category = this.$parent.$parent.$parent.course[this.$parent.$parent.$route.params.chapter - 1].categories[this.$parent.$parent.currentCategory];
-        this.$parent.$parent.currentCategory += 1;
+        const category = this.$parent.$parent.$parent.course[this.$parent.$parent.$route.params.chapter - 1].categories[this.$parent.$parent.$parent.currentCategory];
+        this.$parent.$parent.$parent.currentCategory += 1;
 
         this.id = category["id"];
         this.title = category["title"];

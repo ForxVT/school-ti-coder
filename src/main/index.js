@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem } from 'electron' // eslint-disable-line
+import { app, ipcMain, BrowserWindow, Menu, MenuItem } from 'electron' // eslint-disable-line
 
 /**
  * Set `__static` path to static files in production
@@ -27,33 +27,51 @@ function createWindow() {
 
   fileMenu.append(new MenuItem({
     label: "Nouveau",
+    click: (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send("new");
+    },
   }));
   fileMenu.append(new MenuItem({
     type: "separator",
   }));
   fileMenu.append(new MenuItem({
     label: "Ouvrir...",
+    click: (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send("open");
+    },
   }));
   fileMenu.append(new MenuItem({
     type: "separator",
   }));
   fileMenu.append(new MenuItem({
     label: "Sauvegarder",
+    click: (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send("save");
+    },
   }));
   fileMenu.append(new MenuItem({
     label: "Sauvegarder sous...",
+    click: (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send("save-as");
+    },
   }));
   fileMenu.append(new MenuItem({
     type: "separator",
   }));
   fileMenu.append(new MenuItem({
     label: "Exporter...",
+    click: (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send("export");
+    },
   }));
   fileMenu.append(new MenuItem({
     type: "separator",
   }));
   fileMenu.append(new MenuItem({
     label: "Quitter",
+    click: (menuItem, browserWindow, event) => {
+      app.quit();
+    },
   }));
 
   const menu = new Menu();

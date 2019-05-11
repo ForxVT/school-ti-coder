@@ -41,3 +41,17 @@ exports.getCookie = (name, callback) => {
     return callback(cookies[0]);
   });
 };
+
+exports.chunkify = (a, n) => { 
+  let index = 0;
+  const arrayLength = a.length;
+  const tempArray = [];
+  
+  for (index = 0; index < arrayLength; index += n) {
+    const myChunk = a.slice(index, index + n);
+    // Do something if you want with the group
+    tempArray.push(myChunk);
+  }
+
+  return tempArray;
+};

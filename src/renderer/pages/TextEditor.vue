@@ -14,10 +14,10 @@
         </template>
           <div id="text-editor-editor">
             <template v-if="$parent.course[$route.params.chapter - 1] != null">
-              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:paste="onPaste" v-model="$parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].content"></textarea>
+              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste" v-model="$parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].content"></textarea>
             </template>
             <template v-else>
-              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:paste="onPaste"></textarea>
+              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste"></textarea>
             </template>
           </div>
         </div>
@@ -49,15 +49,18 @@
         const currentLine = this.$refs.editor.value.substr(0, this.$refs.editor.selectionStart).split("\n").length;
         const lines = this.$refs.editor.value.replace(/\r/g, '').split('\n');
         
-        if ((e.keyCode !== 13 && lines[currentLine - 1].length >= 30) ||
-            (e.keyCode === 13 && lines.length >= 13)) {
+        if (e.keyCode !== 13 && lines[currentLine - 1].length >= 30) {
           e.stopPropagation();
           e.preventDefault();
-        } else {
-          this.$parent.course[this.$route.params.chapter - 1].categories[this.$route.params.category - 1].content = this.$refs.editor.value;
-          utils.setCookie("course", JSON.stringify(this.$parent.course));
         }
       },
+      onTextChangedUp: function (e) {
+        this.$parent.course[this.$route.params.chapter - 1].categories[this.$route.params.category - 1].content = this.$refs.editor.value;
+        utils.setCookie("course", JSON.stringify(this.$parent.course));
+      },
+    },
+    created: function () {
+      this.$parent.currentCategory = 0;
     },
   };
 </script>

@@ -144,3 +144,22 @@ body {
   font-size: 26px;
   width: 500px;
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: white; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black; 
+}
+
+::-moz-selection { background: black; color: white; }
+::selection { background: black; color: white; }

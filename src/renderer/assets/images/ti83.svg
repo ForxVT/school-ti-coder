@@ -4,8 +4,8 @@
     <g>
         <path id="Rounded-Rectangle-2" serif:id="Rounded Rectangle 2" d="M880,110C880,49.289 830.711,0 770,0L110,0C49.289,0 0,49.289 0,110L0,702L880,702L880,110Z" style="fill:url(#_Linear1);"/>
         <g id="TI-83-Premium-CE" serif:id="TI-83 Premium CE" transform="matrix(1,0,0,1,225,76)">
-            <text x="0px" y="0px" style="font-family:'SegoeUI-Bold', 'Segoe UI', sans-serif;font-weight:700;font-size:54.167px;fill:white;">TI-83</text>
-            <text x="148.059px" y="0px" style="font-family:'LucidaGrande', 'Lucida Grande', sans-serif;font-weight:500;font-size:54.167px;fill:white;">Premium CE</text>
+            <text x="0px" y="0px" style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;font-size:54.167px;fill:white;">TI-83</text>
+            <text x="148.059px" y="0px" style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:300;font-size:54.167px;fill:white;">Premium CE</text>
         </g>
         <use id="Rounded-Rectangle-3" serif:id="Rounded Rectangle 3" xlink:href="#_Image2" x="50" y="115" width="780px" height="561px"/>
     </g>

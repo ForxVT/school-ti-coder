@@ -20,7 +20,7 @@ function createWindow() {
     minWidth: 880,
     minHeight: 722,
     useContentSize: true,
-    //resizable: false,
+    resizable: false,
   });
 
   const fileMenu = new Menu();

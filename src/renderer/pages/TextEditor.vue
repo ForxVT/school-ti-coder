@@ -6,7 +6,7 @@
       </template>
       <template v-slot:default>
         <div id="text-editor-content">
-                  <template v-if="$parent.course[$route.params.chapter - 1] != null">
+        <template v-if="$parent.course[$route.params.chapter - 1] != null">
           <span id="text-editor-main-header" class="app-menu-category-header">{{ ($parent.course[$route.params.chapter - 1].title.length > 10 ? $parent.course[$route.params.chapter - 1].title.substring(0, 10).trimRight() + "..." : $parent.course[$route.params.chapter - 1].title) + " - " + ($parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].title.length > 10 ? $parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].title.substring(0, 10).trimRight() + "..." : $parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].title) }}</span>
         </template>
         <template v-else>
@@ -14,10 +14,16 @@
         </template>
           <div id="text-editor-editor">
             <template v-if="$parent.course[$route.params.chapter - 1] != null">
-              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste" v-model="$parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].content"></textarea>
+              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:click="checkLine" v-on:focus="onFocus" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste" v-model="$parent.course[$route.params.chapter - 1].categories[$route.params.category - 1].content"></textarea>
             </template>
             <template v-else>
-              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste"></textarea>
+              <textarea ref="editor" id="text-editor-area" wrap="off" v-on:click="checkLine" v-on:focus="onFocus" v-on:keypress="onTextChanged" v-on:keyup="onTextChangedUp" v-on:paste="onPaste"></textarea>
+            </template>
+            <template v-if="$parent.course[$route.params.chapter - 1] != null && checkLine()">
+              <span id="text-editor-page-indicator">Page {{ currentPage }}/{{ maxPages }}</span>
+            </template>
+            <template v-else>
+              <span id="text-editor-page-indicator">Page {{ currentPage }}/{{ maxPages }}</span>
             </template>
           </div>
         </div>
@@ -35,7 +41,36 @@
     components: {
       BaseView,
     },
+    data: function () {
+      return {
+        maxPages: 1,
+        currentPage: 1,
+        initialCheck: false,
+        initialFocus: false,
+      };
+    },
     methods: {
+      checkLine: function () {
+        if (this.initialCheck) {
+          const lines = this.$refs.editor.value.split("\n").length;
+
+          this.maxPages = Math.floor(lines / 12) + 1;
+          if (this.initialFocus) {
+            const line = this.$refs.editor.value.substr(0, this.$refs.editor.selectionStart).split("\n").length;
+            this.currentPage = Math.floor(line / 12) + 1;
+          }
+        } else {
+          const lines = this.$parent.course[this.$route.params.chapter - 1].categories[this.$route.params.category - 1].content.split("\n").length;
+          
+          this.maxPages = Math.floor(lines / 12) + 1;
+          this.currentPage = 1;
+          this.initialCheck = true;
+        }
+      },
+      onFocus: function () {
+        this.initialFocus = true;
+        this.checkLine();
+      },
       onClickBack: function () {
         this.$parent.state = 1;
         utils.setCookie("state", this.$parent.state.toString());
@@ -57,6 +92,7 @@
       onTextChangedUp: function (e) {
         this.$parent.course[this.$route.params.chapter - 1].categories[this.$route.params.category - 1].content = this.$refs.editor.value;
         utils.setCookie("course", JSON.stringify(this.$parent.course));
+        this.checkLine();
       },
     },
     created: function () {

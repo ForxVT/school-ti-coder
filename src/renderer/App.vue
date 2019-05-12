@@ -42,6 +42,7 @@
         
         if (path != null) {
           if (path[0] !== "") {
+            this.new();
             fs.readFile(path[0], "utf-8", (error, data) => {
               if (error) {
                 console.log(error);
@@ -107,7 +108,7 @@
           chapterArray.forEach((chapter, chapterIndex) => {
             chapter.id = index++;
 
-            mainMenuChapter += `,"${chapter.title}",${chapter.id}`;
+            mainMenuChapter += `,"${chapter.title}",${(chapter.id).toString(36).toUpperCase()}`;
 
             let categoriesArrays = [chapter.categories];
             const categoriesIndexes = [];
@@ -143,7 +144,7 @@
                   textArrays = utils.chunkify(lines, 12);
                 }
 
-                codeCategory += `\n\nLbl ${category.id}`;
+                codeCategory += `\n\nLbl ${(category.id).toString(36).toUpperCase()}`;
                 
                 textArrays.forEach((text, textIndex) => {
                   let offset = 0;
@@ -179,20 +180,20 @@
                   }
                 });
 
-                codeCategory += `\nGoto ${chapter.id}`;
+                codeCategory += `\nGoto ${(chapter.id).toString(36).toUpperCase()}`;
 
-                mainMenuChapter += `,"${category.title}",${category.id}`;
+                mainMenuChapter += `,"${category.title}",${(category.id).toString(36).toUpperCase()}`;
               });
 
               if (categoriesArrays.length < 2) {
-                mainMenuChapter += `,"[RETOUR]",${chapterIndexes[chapterArrayIndex]},"[QUITTER]",1)`;
+                mainMenuChapter += `,"[RETOUR]",${(chapterIndexes[chapterArrayIndex]).toString(36).toUpperCase()},"[QUITTER]",1)`;
               } else if (categoriesArrayIndex === categoriesArrays.length - 1) {
-                mainMenuChapter += `,"[PAGE INITIALE]",${firstCategoryIndex - 1},"[RETOUR]",${chapterIndexes[chapterArrayIndex]},"[QUITTER]",1)`;
+                mainMenuChapter += `,"[PAGE INITIALE]",${(firstCategoryIndex - 1).toString(36).toUpperCase()},"[RETOUR]",${(chapterIndexes[chapterArrayIndex]).toString(36).toUpperCase()},"[QUITTER]",1)`;
               } else {
-                mainMenuChapter += `,"[PAGE SUIVANTE]",${index},"[RETOUR]",${chapterIndexes[chapterArrayIndex]},"[QUITTER]",1)`;
+                mainMenuChapter += `,"[PAGE SUIVANTE]",${(index).toString(36).toUpperCase()},"[RETOUR]",${(chapterIndexes[chapterArrayIndex]).toString(36).toUpperCase()},"[QUITTER]",1)`;
               }
 
-              codeChapter += `\n\nLbl ${chapter.id}`;
+              codeChapter += `\n\nLbl ${(chapter.id).toString(36).toUpperCase()}`;
               codeChapter += `\nClrHome`;
               codeChapter += mainMenuChapter;
               codeChapter += codeCategory;
@@ -208,10 +209,10 @@
           } else if (chapterArrayIndex === chapterArrays.length - 1) {
             mainMenuChapter += `,"[PAGE INITIALE]",0,"[QUITTER]",1)`;
           } else {
-            mainMenuChapter += `,"[PAGE SUIVANTE]",${(index++) + 1},"[QUITTER]",1)`;
+            mainMenuChapter += `,"[PAGE SUIVANTE]",${((index++) + 1).toString(36).toUpperCase()},"[QUITTER]",1)`;
           }
           
-          code += `\n\nLbl ${chapterIndexes[chapterIndexes.length - 1]}`;
+          code += `\n\nLbl ${(chapterIndexes[chapterIndexes.length - 1]).toString(36).toUpperCase()}`;
           code += `\nClrHome`;
           code += mainMenuChapter;
           code += codeChapter;
@@ -264,7 +265,6 @@
           this.new();
         });
         ipcRenderer.on("open", () => {
-          this.new();
           this.open();
         });
         ipcRenderer.on("save", () => {

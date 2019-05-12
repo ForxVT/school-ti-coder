@@ -37,6 +37,7 @@ module.exports = {
     'no-unused-expressions': 0,
     'max-len': 1,
     'no-empty': 1,
+    'import/no-extraneous-dependencies': 1,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
